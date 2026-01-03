@@ -47,6 +47,14 @@ public partial class HrmsDbContext : DbContext
 
     public virtual DbSet<UsrUser> UsrUsers { get; set; }
 
+    public virtual DbSet<HhCountry> HhCountries { get; set; }
+
+    public virtual DbSet<HhState> HhStates { get; set; }
+
+    public virtual DbSet<HhCity> HhCities { get; set; }
+
+    public virtual DbSet<HhHospital> HhHospitals { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("workstation id=HRMS_DB.mssql.somee.com;packet size=4096;user id=patel007_SQLLogin_1;pwd=ee5xxt3gj5;data source=HRMS_DB.mssql.somee.com;persist security info=False;initial catalog=HRMS_DB;TrustServerCertificate=True");
@@ -419,6 +427,38 @@ public partial class HrmsDbContext : DbContext
                 .HasForeignKey(d => d.RoleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_USR_Role");
+        });
+
+        modelBuilder.Entity<HhCountry>(entity =>
+        {
+            entity.HasKey(e => e.CountryId);
+            entity.ToTable("HH_Country");
+            entity.Property(e => e.CountryName).HasMaxLength(100).IsUnicode(false);
+            entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
+        });
+
+        modelBuilder.Entity<HhState>(entity =>
+        {
+            entity.HasKey(e => e.StateId);
+            entity.ToTable("HH_State");
+            entity.Property(e => e.StateName).HasMaxLength(100).IsUnicode(false);
+            entity.HasOne(d => d.Country).WithMany(p => p.HhStates).HasForeignKey(d => d.CountryId).OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
+        modelBuilder.Entity<HhCity>(entity =>
+        {
+            entity.HasKey(e => e.CityId);
+            entity.ToTable("HH_City");
+            entity.Property(e => e.CityName).HasMaxLength(100).IsUnicode(false);
+            entity.HasOne(d => d.State).WithMany(p => p.HhCities).HasForeignKey(d => d.StateId).OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
+        modelBuilder.Entity<HhHospital>(entity =>
+        {
+            entity.HasKey(e => e.HospitalId);
+            entity.ToTable("HH_Hospital");
+            entity.Property(e => e.HospitalName).HasMaxLength(100).IsUnicode(false);
+            entity.HasOne(d => d.City).WithMany(p => p.HhHospitals).HasForeignKey(d => d.CityId).OnDelete(DeleteBehavior.ClientSetNull);
         });
 
         OnModelCreatingPartial(modelBuilder);

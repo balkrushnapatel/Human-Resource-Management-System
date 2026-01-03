@@ -1,13 +1,53 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\patel\\Desktop\\Human-Resource-Management-System\\hrms_api\\",
+  "WorkspaceRootPath": "D:\\Human-Resource-Management-System\\hrms_api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|c:\\users\\patel\\desktop\\human-resource-management-system\\hrms_api\\hrms_api\\hrms_api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|d:\\human-resource-management-system\\hrms_api\\hrms_api\\controllers\\prjassignmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|solutionrelative:hrms_api\\controllers\\prjassignmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|d:\\human-resource-management-system\\hrms_api\\hrms_api\\controllers\\levleavetypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|solutionrelative:hrms_api\\controllers\\levleavetypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|d:\\human-resource-management-system\\hrms_api\\hrms_api\\controllers\\levleaverequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|solutionrelative:hrms_api\\controllers\\levleaverequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|d:\\human-resource-management-system\\hrms_api\\hrms_api\\controllers\\empemployeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|solutionrelative:hrms_api\\controllers\\empemployeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|d:\\human-resource-management-system\\hrms_api\\hrms_api\\controllers\\desdesignationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|solutionrelative:hrms_api\\controllers\\desdesignationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|d:\\human-resource-management-system\\hrms_api\\hrms_api\\controllers\\depdepartmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|solutionrelative:hrms_api\\controllers\\depdepartmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|d:\\human-resource-management-system\\hrms_api\\hrms_api\\controllers\\audauditlogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|solutionrelative:hrms_api\\controllers\\audauditlogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|d:\\human-resource-management-system\\hrms_api\\hrms_api\\controllers\\attattendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|solutionrelative:hrms_api\\controllers\\attattendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|d:\\human-resource-management-system\\hrms_api\\hrms_api\\models\\aprapproval.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|solutionrelative:hrms_api\\models\\aprapproval.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|d:\\human-resource-management-system\\hrms_api\\hrms_api\\controllers\\aprapprovalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|solutionrelative:hrms_api\\controllers\\aprapprovalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|d:\\human-resource-management-system\\hrms_api\\hrms_api\\hrms_api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|solutionrelative:hrms_api\\hrms_api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|c:\\users\\patel\\desktop\\human-resource-management-system\\hrms_api\\hrms_api\\models\\hrmsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|d:\\human-resource-management-system\\hrms_api\\hrms_api\\models\\hrmsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|solutionrelative:hrms_api\\models\\hrmsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -23,23 +63,153 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "PrjAssignmentController.cs",
+              "DocumentMoniker": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\PrjAssignmentController.cs",
+              "RelativeDocumentMoniker": "hrms_api\\Controllers\\PrjAssignmentController.cs",
+              "ToolTip": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\PrjAssignmentController.cs",
+              "RelativeToolTip": "hrms_api\\Controllers\\PrjAssignmentController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-03T09:39:02.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LevLeaveTypeController.cs",
+              "DocumentMoniker": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\LevLeaveTypeController.cs",
+              "RelativeDocumentMoniker": "hrms_api\\Controllers\\LevLeaveTypeController.cs",
+              "ToolTip": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\LevLeaveTypeController.cs",
+              "RelativeToolTip": "hrms_api\\Controllers\\LevLeaveTypeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-03T09:38:39.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LevLeaveRequestController.cs",
+              "DocumentMoniker": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\LevLeaveRequestController.cs",
+              "RelativeDocumentMoniker": "hrms_api\\Controllers\\LevLeaveRequestController.cs",
+              "ToolTip": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\LevLeaveRequestController.cs",
+              "RelativeToolTip": "hrms_api\\Controllers\\LevLeaveRequestController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-03T09:38:23.333Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EmpEmployeeController.cs",
+              "DocumentMoniker": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\EmpEmployeeController.cs",
+              "RelativeDocumentMoniker": "hrms_api\\Controllers\\EmpEmployeeController.cs",
+              "ToolTip": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\EmpEmployeeController.cs",
+              "RelativeToolTip": "hrms_api\\Controllers\\EmpEmployeeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-03T09:37:54.724Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DesDesignationController.cs",
+              "DocumentMoniker": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\DesDesignationController.cs",
+              "RelativeDocumentMoniker": "hrms_api\\Controllers\\DesDesignationController.cs",
+              "ToolTip": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\DesDesignationController.cs",
+              "RelativeToolTip": "hrms_api\\Controllers\\DesDesignationController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-03T09:37:37.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DepDepartmentController.cs",
+              "DocumentMoniker": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\DepDepartmentController.cs",
+              "RelativeDocumentMoniker": "hrms_api\\Controllers\\DepDepartmentController.cs",
+              "ToolTip": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\DepDepartmentController.cs",
+              "RelativeToolTip": "hrms_api\\Controllers\\DepDepartmentController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-03T09:37:20.561Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AudAuditLogController.cs",
+              "DocumentMoniker": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\AudAuditLogController.cs",
+              "RelativeDocumentMoniker": "hrms_api\\Controllers\\AudAuditLogController.cs",
+              "ToolTip": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\AudAuditLogController.cs",
+              "RelativeToolTip": "hrms_api\\Controllers\\AudAuditLogController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-03T09:36:59.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AttAttendanceController.cs",
+              "DocumentMoniker": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\AttAttendanceController.cs",
+              "RelativeDocumentMoniker": "hrms_api\\Controllers\\AttAttendanceController.cs",
+              "ToolTip": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\AttAttendanceController.cs",
+              "RelativeToolTip": "hrms_api\\Controllers\\AttAttendanceController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-03T09:36:41.826Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AprApproval.cs",
+              "DocumentMoniker": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Models\\AprApproval.cs",
+              "RelativeDocumentMoniker": "hrms_api\\Models\\AprApproval.cs",
+              "ToolTip": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Models\\AprApproval.cs",
+              "RelativeToolTip": "hrms_api\\Models\\AprApproval.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-03T09:36:20.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AprApprovalController.cs",
+              "DocumentMoniker": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\AprApprovalController.cs",
+              "RelativeDocumentMoniker": "hrms_api\\Controllers\\AprApprovalController.cs",
+              "ToolTip": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Controllers\\AprApprovalController.cs",
+              "RelativeToolTip": "hrms_api\\Controllers\\AprApprovalController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-03T09:36:18.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "hrms_api.csproj",
-              "DocumentMoniker": "C:\\Users\\patel\\Desktop\\Human-Resource-Management-System\\hrms_api\\hrms_api\\hrms_api.csproj",
+              "DocumentMoniker": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\hrms_api.csproj",
               "RelativeDocumentMoniker": "hrms_api\\hrms_api.csproj",
-              "ToolTip": "C:\\Users\\patel\\Desktop\\Human-Resource-Management-System\\hrms_api\\hrms_api\\hrms_api.csproj",
+              "ToolTip": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\hrms_api.csproj",
               "RelativeToolTip": "hrms_api\\hrms_api.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2026-01-03T07:40:50.693Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
               "Title": "HrmsDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\patel\\Desktop\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Models\\HrmsDbContext.cs",
+              "DocumentMoniker": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Models\\HrmsDbContext.cs",
               "RelativeDocumentMoniker": "hrms_api\\Models\\HrmsDbContext.cs",
-              "ToolTip": "C:\\Users\\patel\\Desktop\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Models\\HrmsDbContext.cs",
+              "ToolTip": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Models\\HrmsDbContext.cs",
               "RelativeToolTip": "hrms_api\\Models\\HrmsDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
