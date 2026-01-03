@@ -1,9 +1,13 @@
 "use client"
 
+import { useState } from "react"
 import { EmployeeNav } from "@/components/employee-nav"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { EmployeeProfileView } from "@/components/employee-profile-view"
 import { useAuth } from "@/lib/auth-context"
 import { Calendar, Clock, FileText, User, CheckCircle2, AlertCircle, ArrowRight } from "lucide-react"
 import Link from "next/link"
@@ -59,6 +63,73 @@ export default function EmployeeDashboard() {
     { action: "Profile updated", time: "2 days ago", status: "info" },
   ]
 
+  /* Employee Data */
+  const employees = [
+    {
+      id: "EMP001",
+      name: "John Doe",
+      position: "Software Engineer",
+      department: "Engineering",
+      email: "john.doe@company.com",
+      phone: "+1 234 567 8900",
+      status: "active",
+      joinDate: "Jan 15, 2023",
+      workLocation: "New York Office"
+    },
+    {
+      id: "EMP002",
+      name: "Sarah Johnson",
+      position: "Product Manager",
+      department: "Product",
+      email: "sarah.j@company.com",
+      status: "active",
+      joinDate: "Feb 01, 2023",
+      workLocation: "Remote"
+    },
+    {
+      id: "EMP003",
+      name: "Michael Chen",
+      position: "UX Designer",
+      department: "Design",
+      email: "michael.c@company.com",
+      status: "away",
+      joinDate: "Mar 10, 2023",
+      workLocation: "San Francisco HQ"
+    },
+    {
+      id: "EMP004",
+      name: "Emily Davis",
+      position: "Frontend Dev",
+      department: "Engineering",
+      email: "emily.d@company.com",
+      status: "active",
+      joinDate: "Apr 22, 2023",
+      workLocation: "London Branch"
+    },
+    {
+      id: "EMP005",
+      name: "James Wilson",
+      position: "DevOps Engineer",
+      department: "Operations",
+      email: "james.w@company.com",
+      status: "offline",
+      joinDate: "May 15, 2023",
+      workLocation: "Remote"
+    },
+    {
+      id: "EMP006",
+      name: "Lisa Anderson",
+      position: "HR Specialist",
+      department: "Human Resources",
+      email: "lisa.a@company.com",
+      status: "active",
+      joinDate: "Jun 01, 2023",
+      workLocation: "New York Office"
+    }
+  ]
+
+  const [selectedEmployee, setSelectedEmployee] = useState<any>(null)
+
   return (
     <div className="min-h-screen bg-background">
       <EmployeeNav />
@@ -92,6 +163,59 @@ export default function EmployeeDashboard() {
             )
           })}
         </div>
+
+        {/* Team Members Grid */}
+        <div className="mb-8">
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="text-xl font-semibold tracking-tight">Team Members</h2>
+            <Button variant="ghost" size="sm" className="gap-1">
+              View All <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {employees.map((employee) => (
+              <Card
+                key={employee.id}
+                className="cursor-pointer transition-all hover:shadow-md hover:border-primary/50"
+                onClick={() => setSelectedEmployee(employee)}
+              >
+                <CardContent className="pt-6">
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-center gap-3">
+                      <Avatar className="h-10 w-10">
+                        <AvatarFallback className="bg-primary/10 text-primary">
+                          {employee.name.split(" ").map(n => n[0]).join("")}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <h3 className="font-semibold leading-none">{employee.name}</h3>
+                        <p className="text-sm text-muted-foreground mt-1">{employee.position}</p>
+                      </div>
+                    </div>
+                    <div className={`h-2.5 w-2.5 rounded-full ${employee.status === 'active' ? 'bg-green-500' :
+                      employee.status === 'away' ? 'bg-amber-500' : 'bg-slate-300'
+                      }`} />
+                  </div>
+
+                  <div className="mt-4 flex items-center justify-between text-sm text-muted-foreground">
+                    <span>{employee.department}</span>
+                    <span>{employee.id}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        <Dialog open={!!selectedEmployee} onOpenChange={(open) => !open && setSelectedEmployee(null)}>
+          <DialogContent className="sm:max-w-[600px]">
+            <DialogHeader>
+              <DialogTitle>Employee Profile</DialogTitle>
+            </DialogHeader>
+            <EmployeeProfileView employee={selectedEmployee} />
+          </DialogContent>
+        </Dialog>
 
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Quick Actions */}
@@ -129,9 +253,8 @@ export default function EmployeeDashboard() {
                 {recentActivity.map((activity, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <div
-                      className={`mt-0.5 rounded-full p-1 ${
-                        activity.status === "success" ? "bg-green-100" : "bg-blue-100"
-                      }`}
+                      className={`mt-0.5 rounded-full p-1 ${activity.status === "success" ? "bg-green-100" : "bg-blue-100"
+                        }`}
                     >
                       {activity.status === "success" ? (
                         <CheckCircle2 className="h-4 w-4 text-green-600" />
@@ -150,7 +273,7 @@ export default function EmployeeDashboard() {
           </Card>
         </div>
 
-        {/* Upcoming Events */}
+        {/* Upcoming Events - Kept at bottom */}
         <Card className="mt-6">
           <CardHeader>
             <CardTitle>Upcoming Events</CardTitle>
