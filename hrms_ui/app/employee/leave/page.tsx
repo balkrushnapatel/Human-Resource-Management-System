@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Calendar, CheckCircle2, XCircle, Clock, Plus } from "lucide-react"
+import { Calendar, CheckCircle2, XCircle, Clock, Plus, Upload } from "lucide-react"
 import {
   Dialog,
   DialogContent,
@@ -18,6 +18,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 
 export default function EmployeeLeavePage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -36,35 +44,33 @@ export default function EmployeeLeavePage() {
   const leaveRequests = [
     {
       id: "1",
+      name: "John Doe",
       type: "Paid Leave",
-      startDate: "Jan 20, 2025",
-      endDate: "Jan 22, 2025",
+      startDate: "2025-01-20",
+      endDate: "2025-01-22",
       days: 3,
       status: "pending",
       remarks: "Family vacation",
-      submittedDate: "Jan 10, 2025",
     },
     {
       id: "2",
+      name: "John Doe",
       type: "Sick Leave",
-      startDate: "Jan 5, 2025",
-      endDate: "Jan 6, 2025",
+      startDate: "2025-01-05",
+      endDate: "2025-01-06",
       days: 2,
       status: "approved",
       remarks: "Medical appointment",
-      submittedDate: "Jan 3, 2025",
-      reviewedBy: "HR Manager",
     },
     {
       id: "3",
+      name: "John Doe",
       type: "Paid Leave",
-      startDate: "Dec 25, 2024",
-      endDate: "Dec 27, 2024",
+      startDate: "2024-12-25",
+      endDate: "2024-12-27",
       days: 3,
       status: "approved",
       remarks: "Holiday break",
-      submittedDate: "Dec 15, 2024",
-      reviewedBy: "HR Manager",
     },
   ]
 
@@ -86,184 +92,151 @@ export default function EmployeeLeavePage() {
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">Leave Management</h1>
-            <p className="mt-2 text-muted-foreground">Apply for time off and track your leave requests</p>
+            <h1 className="text-3xl font-bold tracking-tight">Time Off</h1>
+            <p className="mt-2 text-muted-foreground">Manage your leave requests and balance</p>
           </div>
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
-              <Button className="gap-2">
+              <Button className="gap-2 bg-pink-500 hover:bg-pink-600">
                 <Plus className="h-4 w-4" />
-                Apply for Leave
+                NEW
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px]">
               <DialogHeader>
-                <DialogTitle>Apply for Leave</DialogTitle>
-                <DialogDescription>Submit a new leave request for approval</DialogDescription>
+                <DialogTitle>Time off Type Request</DialogTitle>
+                <DialogDescription className="text-right">
+                  <Badge variant="secondary" className="bg-cyan-100 text-cyan-800 hover:bg-cyan-100">Silky Pheasant</Badge>
+                  {/* Mock user badge from design */}
+                </DialogDescription>
               </DialogHeader>
               <div className="space-y-4 py-4">
-                <div className="space-y-2">
-                  <Label htmlFor="leaveType">Leave Type</Label>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label className="text-right">Employee</Label>
+                  <Input value="[Employee]" disabled className="col-span-3 bg-muted" />
+                </div>
+
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="leaveType" className="text-right">Time off Type</Label>
                   <Select value={leaveType} onValueChange={setLeaveType}>
-                    <SelectTrigger id="leaveType">
+                    <SelectTrigger id="leaveType" className="col-span-3">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="paid">Paid Leave</SelectItem>
+                      <SelectItem value="paid">Paid Time Off</SelectItem>
                       <SelectItem value="sick">Sick Leave</SelectItem>
-                      <SelectItem value="unpaid">Unpaid Leave</SelectItem>
+                      <SelectItem value="unpaid">Unpaid Leaves</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <Label htmlFor="startDate">Start Date</Label>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label className="text-right">Validity Period</Label>
+                  <div className="col-span-3 flex items-center gap-2">
                     <Input
-                      id="startDate"
                       type="date"
                       value={startDate}
                       onChange={(e) => setStartDate(e.target.value)}
+                      className="w-full"
                     />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="endDate">End Date</Label>
-                    <Input id="endDate" type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+                    <span>To</span>
+                    <Input
+                      type="date"
+                      value={endDate}
+                      onChange={(e) => setEndDate(e.target.value)}
+                      className="w-full"
+                    />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="remarks">Remarks</Label>
-                  <Textarea
-                    id="remarks"
-                    placeholder="Reason for leave..."
-                    value={remarks}
-                    onChange={(e) => setRemarks(e.target.value)}
-                    rows={4}
-                  />
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label className="text-right">Allocation</Label>
+                  <div className="col-span-3 flex items-center gap-2">
+                    <span className="font-mono">01.00</span> Days
+                  </div>
                 </div>
+
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label className="text-right">Attachment</Label>
+                  <div className="col-span-3">
+                    <div className="flex items-center gap-2">
+                      <Button variant="outline" size="icon">
+                        <Upload className="h-4 w-4" />
+                      </Button>
+                      <span className="text-xs text-muted-foreground">(For sick leave certificate)</span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
-              <div className="flex justify-end gap-3">
-                <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-                  Cancel
-                </Button>
-                <Button onClick={handleSubmitLeave}>Submit Request</Button>
+              <div className="flex justify-start gap-3">
+                <Button onClick={handleSubmitLeave} className="bg-purple-500 hover:bg-purple-600">Submit</Button>
+                <Button variant="secondary" onClick={() => setIsDialogOpen(false)}>Discard</Button>
               </div>
             </DialogContent>
           </Dialog>
         </div>
 
         {/* Leave Balance */}
-        <div className="mb-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mb-6 grid gap-4 sm:grid-cols-2">
           <Card>
             <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Paid Leave</p>
-                  <p className="mt-2 text-3xl font-bold text-blue-600">{leaveBalance.paid}</p>
-                </div>
-                <div className="rounded-lg bg-blue-50 p-3">
-                  <Calendar className="h-6 w-6 text-blue-600" />
-                </div>
+              <div className="flex justify-between items-end border-b pb-2 mb-2">
+                <span className="text-blue-500 font-medium">Paid Time Off</span>
+                <span className="text-blue-500 font-medium">Sick time off</span>
               </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Sick Leave</p>
-                  <p className="mt-2 text-3xl font-bold text-amber-600">{leaveBalance.sick}</p>
-                </div>
-                <div className="rounded-lg bg-amber-50 p-3">
-                  <Calendar className="h-6 w-6 text-amber-600" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Unpaid Leave</p>
-                  <p className="mt-2 text-3xl font-bold text-purple-600">{leaveBalance.unpaid}</p>
-                </div>
-                <div className="rounded-lg bg-purple-50 p-3">
-                  <Calendar className="h-6 w-6 text-purple-600" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Total Available</p>
-                  <p className="mt-2 text-3xl font-bold text-green-600">{leaveBalance.total}</p>
-                </div>
-                <div className="rounded-lg bg-green-50 p-3">
-                  <Calendar className="h-6 w-6 text-green-600" />
-                </div>
+              <div className="flex justify-between text-sm text-muted-foreground">
+                <span>{leaveBalance.paid} Days Available</span>
+                <span>{leaveBalance.sick} Days Available</span>
               </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Leave Requests */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Leave Requests</CardTitle>
-            <CardDescription>Your submitted leave applications</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+        {/* Requests Table */}
+        <div className="rounded-md border bg-card">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>Start Date</TableHead>
+                <TableHead>End Date</TableHead>
+                <TableHead>Time off Type</TableHead>
+                <TableHead>Status</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {leaveRequests.map((request) => (
-                <div key={request.id} className="flex flex-col gap-4 rounded-lg border p-4 sm:flex-row sm:items-start">
-                  <div className="flex-1 space-y-3">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h3 className="font-semibold">{request.type}</h3>
-                          <Badge
-                            variant={
-                              request.status === "approved"
-                                ? "default"
-                                : request.status === "rejected"
-                                  ? "destructive"
-                                  : "secondary"
-                            }
-                            className="gap-1"
-                          >
-                            {request.status === "approved" && <CheckCircle2 className="h-3 w-3" />}
-                            {request.status === "rejected" && <XCircle className="h-3 w-3" />}
-                            {request.status === "pending" && <Clock className="h-3 w-3" />}
-                            {request.status}
-                          </Badge>
-                        </div>
-                        <p className="mt-1 text-sm text-muted-foreground">
-                          {request.startDate} - {request.endDate} ({request.days} days)
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="space-y-1">
-                      <p className="text-sm">
-                        <span className="font-medium">Remarks:</span> {request.remarks}
-                      </p>
-                      <p className="text-sm text-muted-foreground">Submitted on {request.submittedDate}</p>
-                      {request.reviewedBy && (
-                        <p className="text-sm text-muted-foreground">Reviewed by {request.reviewedBy}</p>
-                      )}
-                    </div>
-                  </div>
-                </div>
+                <TableRow key={request.id}>
+                  <TableCell className="font-medium">[{request.name}]</TableCell>
+                  <TableCell>{request.startDate}</TableCell>
+                  <TableCell>{request.endDate}</TableCell>
+                  <TableCell className="text-blue-500">{request.type}</TableCell>
+                  <TableCell>
+                    <Badge
+                      variant={
+                        request.status === "approved"
+                          ? "default"
+                          : request.status === "rejected"
+                            ? "destructive"
+                            : "secondary"
+                      }
+                      className={
+                        request.status === "approved" ? "bg-green-500 hover:bg-green-600" :
+                          request.status === "rejected" ? "bg-red-500 hover:bg-red-600" :
+                            "bg-yellow-500 hover:bg-yellow-600 text-white"
+                      }
+                    >
+                      {/* Status box as simple colored rect/badge */}
+                      <span className="sr-only">{request.status}</span>
+                      <div className="h-2 w-8" />
+                    </Badge>
+                  </TableCell>
+                </TableRow>
               ))}
-            </div>
-          </CardContent>
-        </Card>
+            </TableBody>
+          </Table>
+        </div>
       </main>
     </div>
   )

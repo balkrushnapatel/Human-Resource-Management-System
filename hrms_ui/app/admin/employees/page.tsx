@@ -7,14 +7,21 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Search, Filter, UserPlus } from "lucide-react"
+import { Search, Filter, UserPlus, Pencil, Eye } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { EmployeeProfileView } from "@/components/employee-profile-view"
+import { EmployeeEditForm, type EmployeeEditValues } from "@/components/employee-edit-form"
 
 export default function AdminEmployeesPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [filterDepartment, setFilterDepartment] = useState("all")
 
-  const employees = [
+  // Modal States
+  const [viewEmployee, setViewEmployee] = useState<any>(null)
+  const [editEmployee, setEditEmployee] = useState<any>(null)
+
+  const [employees, setEmployees] = useState([
     {
       id: "EMP001",
       name: "John Doe",
@@ -22,6 +29,8 @@ export default function AdminEmployeesPage() {
       department: "Engineering",
       position: "Software Engineer",
       status: "active",
+      phone: "+1 234 567 8900",
+      workLocation: "New York"
     },
     {
       id: "EMP002",
@@ -30,6 +39,8 @@ export default function AdminEmployeesPage() {
       department: "Sales",
       position: "Sales Manager",
       status: "active",
+      phone: "+1 234 567 8901",
+      workLocation: "London"
     },
     {
       id: "EMP003",
@@ -38,6 +49,8 @@ export default function AdminEmployeesPage() {
       department: "Engineering",
       position: "Senior Developer",
       status: "active",
+      phone: "+1 234 567 8902",
+      workLocation: "New York"
     },
     {
       id: "EMP004",
@@ -46,6 +59,8 @@ export default function AdminEmployeesPage() {
       department: "Marketing",
       position: "Marketing Specialist",
       status: "active",
+      phone: "+1 234 567 8903",
+      workLocation: "Remote"
     },
     {
       id: "EMP005",
@@ -54,6 +69,8 @@ export default function AdminEmployeesPage() {
       department: "HR",
       position: "HR Executive",
       status: "active",
+      phone: "+1 234 567 8904",
+      workLocation: "New York"
     },
     {
       id: "EMP006",
@@ -62,8 +79,17 @@ export default function AdminEmployeesPage() {
       department: "Engineering",
       position: "DevOps Engineer",
       status: "active",
+      phone: "+1 234 567 8905",
+      workLocation: "San Francisco"
     },
-  ]
+  ])
+
+  const handleSaveEmployee = (updatedEmployee: EmployeeEditValues) => {
+    setEmployees(prev => prev.map(emp =>
+      emp.id === updatedEmployee.id ? { ...emp, ...updatedEmployee } : emp
+    ))
+    setEditEmployee(null)
+  }
 
   const stats = [
     { label: "Total Employees", value: "248" },
@@ -133,7 +159,7 @@ export default function AdminEmployeesPage() {
         {/* Employee Grid */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {employees.map((employee) => (
-            <Card key={employee.id} className="hover:shadow-md transition-shadow">
+            <Card key={employee.id} className="group relative hover:shadow-md transition-shadow">
               <CardContent className="pt-6">
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
@@ -150,7 +176,9 @@ export default function AdminEmployeesPage() {
                       <p className="text-sm text-muted-foreground">{employee.id}</p>
                     </div>
                   </div>
-                  <Badge variant="outline">{employee.status}</Badge>
+                  <Badge variant={employee.status === 'active' ? 'default' : 'secondary'}>
+                    {employee.status}
+                  </Badge>
                 </div>
 
                 <div className="mt-4 space-y-2 text-sm">
@@ -159,13 +187,45 @@ export default function AdminEmployeesPage() {
                   <p className="text-muted-foreground">{employee.email}</p>
                 </div>
 
-                <Button variant="outline" className="mt-4 w-full bg-transparent">
-                  View Details
-                </Button>
+                <div className="mt-4 flex gap-2">
+                  <Button variant="outline" className="flex-1 gap-2" onClick={() => setViewEmployee(employee)}>
+                    <Eye className="h-4 w-4" /> View
+                  </Button>
+                  <Button variant="outline" size="icon" onClick={() => setEditEmployee(employee)}>
+                    <Pencil className="h-4 w-4" />
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
+
+        {/* View Modal */}
+        <Dialog open={!!viewEmployee} onOpenChange={(open) => !open && setViewEmployee(null)}>
+          <DialogContent className="sm:max-w-[600px]">
+            <DialogHeader>
+              <DialogTitle>Employee Details</DialogTitle>
+            </DialogHeader>
+            <EmployeeProfileView employee={viewEmployee} />
+          </DialogContent>
+        </Dialog>
+
+        {/* Edit Modal */}
+        <Dialog open={!!editEmployee} onOpenChange={(open) => !open && setEditEmployee(null)}>
+          <DialogContent className="sm:max-w-[600px]">
+            <DialogHeader>
+              <DialogTitle>Edit Employee</DialogTitle>
+            </DialogHeader>
+            {editEmployee && (
+              <EmployeeEditForm
+                employee={editEmployee}
+                onSave={handleSaveEmployee}
+                onCancel={() => setEditEmployee(null)}
+              />
+            )}
+          </DialogContent>
+        </Dialog>
+
       </main>
     </div>
   )
