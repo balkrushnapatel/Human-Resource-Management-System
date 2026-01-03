@@ -2,6 +2,8 @@
 
 import { useState } from "react"
 import { EmployeeNav } from "@/components/employee-nav"
+import { useLeave } from "@/lib/leave-context"
+import { useAuth } from "@/lib/auth-context"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -28,6 +30,8 @@ import {
 } from "@/components/ui/table"
 
 export default function EmployeeLeavePage() {
+  const { user } = useAuth()
+  const { leaveRequests, addRequest } = useLeave()
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [leaveType, setLeaveType] = useState("paid")
   const [startDate, setStartDate] = useState("")
@@ -41,42 +45,27 @@ export default function EmployeeLeavePage() {
     total: 20,
   }
 
-  const leaveRequests = [
-    {
-      id: "1",
-      name: "John Doe",
-      type: "Paid Leave",
-      startDate: "2025-01-20",
-      endDate: "2025-01-22",
-      days: 3,
-      status: "pending",
-      remarks: "Family vacation",
-    },
-    {
-      id: "2",
-      name: "John Doe",
-      type: "Sick Leave",
-      startDate: "2025-01-05",
-      endDate: "2025-01-06",
-      days: 2,
-      status: "approved",
-      remarks: "Medical appointment",
-    },
-    {
-      id: "3",
-      name: "John Doe",
-      type: "Paid Leave",
-      startDate: "2024-12-25",
-      endDate: "2024-12-27",
-      days: 3,
-      status: "approved",
-      remarks: "Holiday break",
-    },
-  ]
+  // Filter requests for just this user (mock - assumes all 'John Doe' or current user)
+  const myRequests = leaveRequests.filter(req => req.name === user?.fullName || req.name === "John Doe")
 
   const handleSubmitLeave = () => {
-    // Handle leave submission
-    console.log({ leaveType, startDate, endDate, remarks })
+    if (!startDate || !endDate) return
+
+    // Calculate days between
+    const start = new Date(startDate)
+    const end = new Date(endDate)
+    const diffTime = Math.abs(end.getTime() - start.getTime())
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1
+
+    addRequest({
+      name: user?.fullName || "Employee",
+      type: leaveType === "paid" ? "Paid Leave" : leaveType === "sick" ? "Sick Leave" : "Unpaid Leave",
+      startDate,
+      endDate,
+      days: diffDays,
+      remarks
+    })
+
     setIsDialogOpen(false)
     // Reset form
     setLeaveType("paid")
@@ -206,7 +195,7 @@ export default function EmployeeLeavePage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {leaveRequests.map((request) => (
+              {myRequests.map((request) => (
                 <TableRow key={request.id}>
                   <TableCell className="font-medium">[{request.name}]</TableCell>
                   <TableCell>{request.startDate}</TableCell>

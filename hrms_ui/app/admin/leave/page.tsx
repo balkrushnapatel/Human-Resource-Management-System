@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { AdminNav } from "@/components/admin-nav"
+import { useLeave, type LeaveRequest } from "@/lib/leave-context"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -28,60 +29,28 @@ import {
 } from "@/components/ui/dialog"
 
 export default function AdminLeavePage() {
+  const { leaveRequests, updateStatus } = useLeave()
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedRequest, setSelectedRequest] = useState<any>(null)
   const [reviewComments, setReviewComments] = useState("")
 
-  const [leaveRequests, setLeaveRequests] = useState([
-    {
-      id: "1",
-      name: "Sarah Johnson",
-      startDate: "28/10/2025",
-      endDate: "28/10/2025",
-      type: "Paid time Off",
-      status: "pending",
-    },
-    {
-      id: "2",
-      name: "Michael Chen",
-      startDate: "15/11/2025",
-      endDate: "18/11/2025",
-      type: "Sick time off",
-      status: "approved",
-    },
-    {
-      id: "3",
-      name: "Emily Davis",
-      startDate: "01/12/2025",
-      endDate: "05/12/2025",
-      type: "Paid time Off",
-      status: "rejected",
-    },
-    {
-      id: "4",
-      name: "Sarah Johnson",
-      startDate: "28/10/2025",
-      endDate: "28/10/2025",
-      type: "Paid time Off",
-      status: "pending",
-    }
-  ])
+  const filteredRequests = leaveRequests.filter(req =>
+    req.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    req.type.toLowerCase().includes(searchQuery.toLowerCase())
+  )
 
-  const handleApprove = (request: any) => {
+  const handleApprove = (request: LeaveRequest) => {
     setSelectedRequest({ ...request, action: "approve" })
   }
 
-  const handleReject = (request: any) => {
+  const handleReject = (request: LeaveRequest) => {
     setSelectedRequest({ ...request, action: "reject" })
   }
 
   const handleSubmitReview = () => {
-    // Mock update logic
-    setLeaveRequests(prev => prev.map(req =>
-      req.id === selectedRequest.id
-        ? { ...req, status: selectedRequest.action === "approve" ? "approved" : "rejected" }
-        : req
-    ))
+    if (selectedRequest) {
+      updateStatus(selectedRequest.id, selectedRequest.action === "approve" ? "approved" : "rejected")
+    }
     setSelectedRequest(null)
     setReviewComments("")
   }
@@ -152,7 +121,7 @@ export default function AdminLeavePage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {leaveRequests.map((request) => (
+                  {filteredRequests.map((request) => (
                     <TableRow key={request.id}>
                       <TableCell className="font-medium">[{request.name}]</TableCell>
                       <TableCell>{request.startDate}</TableCell>

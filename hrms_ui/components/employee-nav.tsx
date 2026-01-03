@@ -16,21 +16,20 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Building2, LayoutDashboard, Calendar, FileText, User, LogOut, Clock, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useAttendance } from "@/lib/attendance-context"
+
+// ... imports remain the same
 
 export function EmployeeNav() {
   const pathname = usePathname()
   const { user, logout } = useAuth()
-  const [isCheckedIn, setIsCheckedIn] = useState(false)
-  const [checkInTime, setCheckInTime] = useState<string | null>(null)
+  const { isCheckedIn, checkInTime, checkIn, checkOut } = useAttendance()
 
-  const handleCheckIn = () => {
+  const handleCheckInToggle = () => {
     if (isCheckedIn) {
-      setIsCheckedIn(false)
-      setCheckInTime(null)
+      checkOut()
     } else {
-      setIsCheckedIn(true)
-      const now = new Date()
-      setCheckInTime(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }))
+      checkIn()
     }
   }
 
@@ -91,7 +90,7 @@ export function EmployeeNav() {
               <Button
                 variant={isCheckedIn ? "destructive" : "default"}
                 size="sm"
-                onClick={handleCheckIn}
+                onClick={handleCheckInToggle}
                 className="min-w-[100px]"
               >
                 {isCheckedIn ? (

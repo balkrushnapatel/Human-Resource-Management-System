@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { EmployeeNav } from "@/components/employee-nav"
+import { useAttendance } from "@/lib/attendance-context"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -9,24 +10,26 @@ import { Calendar } from "@/components/ui/calendar"
 import { CheckCircle2, XCircle, Clock, CalendarIcon } from "lucide-react"
 
 export default function EmployeeAttendancePage() {
+  const { isCheckedIn, checkInTime, checkIn, checkOut, history } = useAttendance()
   const [date, setDate] = useState<Date | undefined>(new Date())
-  const [isCheckedIn, setIsCheckedIn] = useState(false)
-  const [checkInTime, setCheckInTime] = useState<string | null>(null)
-  const [checkOutTime, setCheckOutTime] = useState<string | null>(null)
 
-  const handleCheckIn = () => {
-    const now = new Date()
-    setCheckInTime(now.toLocaleTimeString())
-    setIsCheckedIn(true)
+  // We'll treat the local checkOutTime as a visual indicator for this session
+  const [localCheckOutTime, setLocalCheckOutTime] = useState<string | null>(null)
+
+  const handlePageCheckIn = () => {
+    checkIn()
+    setLocalCheckOutTime(null) // Reset local visual state on new checkin
   }
 
-  const handleCheckOut = () => {
+  const handlePageCheckOut = () => {
     const now = new Date()
-    setCheckOutTime(now.toLocaleTimeString())
+    setLocalCheckOutTime(now.toLocaleTimeString())
+    checkOut()
   }
+
 
   // Mock attendance data
-  const attendanceRecords = [
+  const staticRecords = [
     { date: "Jan 15, 2025", status: "present", checkIn: "9:00 AM", checkOut: "6:00 PM", hours: "9h" },
     { date: "Jan 14, 2025", status: "present", checkIn: "8:45 AM", checkOut: "5:30 PM", hours: "8h 45m" },
     { date: "Jan 13, 2025", status: "present", checkIn: "9:15 AM", checkOut: "6:15 PM", hours: "9h" },
@@ -34,6 +37,10 @@ export default function EmployeeAttendancePage() {
     { date: "Jan 11, 2025", status: "present", checkIn: "8:30 AM", checkOut: "5:45 PM", hours: "9h 15m" },
     { date: "Jan 10, 2025", status: "present", checkIn: "9:00 AM", checkOut: "6:00 PM", hours: "9h" },
   ]
+
+  // Combine dynamic history with static records
+  // We explicitly cast history items to ensure type compatibility if needed, though they should match
+  const attendanceRecords = [...history, ...staticRecords]
 
   const stats = {
     presentDays: 22,
@@ -79,10 +86,10 @@ export default function EmployeeAttendancePage() {
                   <div className="space-y-2">
                     <p className="text-sm text-muted-foreground">Check Out</p>
                     <div className="flex items-center gap-2">
-                      {checkOutTime ? (
+                      {localCheckOutTime ? (
                         <>
                           <Clock className="h-5 w-5 text-blue-600" />
-                          <span className="text-2xl font-bold">{checkOutTime}</span>
+                          <span className="text-2xl font-bold">{localCheckOutTime}</span>
                         </>
                       ) : (
                         <span className="text-2xl font-bold text-muted-foreground">--:--</span>
@@ -93,11 +100,11 @@ export default function EmployeeAttendancePage() {
 
                 <div className="flex gap-3 pt-2">
                   {!isCheckedIn ? (
-                    <Button onClick={handleCheckIn} className="flex-1">
+                    <Button onClick={handlePageCheckIn} className="flex-1">
                       Check In
                     </Button>
-                  ) : !checkOutTime ? (
-                    <Button onClick={handleCheckOut} variant="outline" className="flex-1 bg-transparent">
+                  ) : !localCheckOutTime ? (
+                    <Button onClick={handlePageCheckOut} variant="outline" className="flex-1 bg-transparent">
                       Check Out
                     </Button>
                   ) : (
@@ -149,13 +156,12 @@ export default function EmployeeAttendancePage() {
                     <div key={index} className="flex items-center justify-between rounded-lg border p-4">
                       <div className="flex items-center gap-4">
                         <div
-                          className={`rounded-lg p-2 ${
-                            record.status === "present"
-                              ? "bg-green-50"
-                              : record.status === "leave"
-                                ? "bg-blue-50"
-                                : "bg-red-50"
-                          }`}
+                          className={`rounded-lg p-2 ${record.status === "present"
+                            ? "bg-green-50"
+                            : record.status === "leave"
+                              ? "bg-blue-50"
+                              : "bg-red-50"
+                            }`}
                         >
                           {record.status === "present" ? (
                             <CheckCircle2 className="h-5 w-5 text-green-600" />

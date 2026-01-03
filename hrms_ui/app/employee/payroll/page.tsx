@@ -38,6 +38,45 @@ export default function EmployeePayrollPage() {
     taxPaid: 72000,
   }
 
+  const handleDownload = (month: string, amount: number) => {
+    // Simulating a file download
+    const slipContent = `
+PAYSLIP - ${month}
+----------------------------------------
+Company: Dayflow Systems
+Employee: John Doe (EMP001)
+Department: Engineering
+Position: Software Engineer
+
+EARNINGS
+----------------------------------------
+Base Salary:        $75,000.00
+Housing Allowance:   $3,000.00
+Transport Allowance: $2,000.00
+
+DEDUCTIONS
+----------------------------------------
+Tax:                ($6,000.00)
+Insurance:          ($2,000.00)
+
+----------------------------------------
+NET PAY:            $${amount.toLocaleString()}.00
+----------------------------------------
+
+Date Generated: ${new Date().toLocaleDateString()}
+    `
+
+    const blob = new Blob([slipContent], { type: "text/plain" })
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement("a")
+    a.href = url
+    a.download = `Payslip_${month.replace(" ", "_")}.txt`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    window.URL.revokeObjectURL(url)
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <EmployeeNav />
@@ -57,7 +96,12 @@ export default function EmployeePayrollPage() {
                   <CardTitle>Current Salary</CardTitle>
                   <CardDescription>January 2025</CardDescription>
                 </div>
-                <Button variant="outline" size="sm" className="gap-2 bg-transparent">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-2 bg-transparent"
+                  onClick={() => handleDownload("January 2025", currentSalary.netSalary)}
+                >
                   <Download className="h-4 w-4" />
                   Download Slip
                 </Button>
@@ -182,7 +226,11 @@ export default function EmployeePayrollPage() {
                         {payment.status}
                       </Badge>
                     </div>
-                    <Button variant="ghost" size="sm">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleDownload(payment.month, payment.netPay)}
+                    >
                       <Download className="h-4 w-4" />
                     </Button>
                   </div>
