@@ -1,9 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\patel\\Desktop\\Human-Resource-Management-System\\hrms_api\\",
+  "WorkspaceRootPath": "D:\\Human-Resource-Management-System\\hrms_api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|c:\\users\\patel\\desktop\\human-resource-management-system\\hrms_api\\hrms_api\\models\\hrmsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|d:\\human-resource-management-system\\hrms_api\\hrms_api\\hrms_api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|solutionrelative:hrms_api\\hrms_api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|d:\\human-resource-management-system\\hrms_api\\hrms_api\\models\\hrmsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4BEF3B06-A25C-0C31-A97F-4842B165B421}|hrms_api\\hrms_api.csproj|solutionrelative:hrms_api\\models\\hrmsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -19,12 +23,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "hrms_api",
+              "DocumentMoniker": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\hrms_api.csproj",
+              "RelativeDocumentMoniker": "hrms_api\\hrms_api.csproj",
+              "ToolTip": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\hrms_api.csproj",
+              "RelativeToolTip": "hrms_api\\hrms_api.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-03T07:40:50.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "HrmsDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\patel\\Desktop\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Models\\HrmsDbContext.cs",
+              "DocumentMoniker": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Models\\HrmsDbContext.cs",
               "RelativeDocumentMoniker": "hrms_api\\Models\\HrmsDbContext.cs",
-              "ToolTip": "C:\\Users\\patel\\Desktop\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Models\\HrmsDbContext.cs",
+              "ToolTip": "D:\\Human-Resource-Management-System\\hrms_api\\hrms_api\\Models\\HrmsDbContext.cs",
               "RelativeToolTip": "hrms_api\\Models\\HrmsDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-03T07:04:56.895Z",
               "EditorCaption": ""
